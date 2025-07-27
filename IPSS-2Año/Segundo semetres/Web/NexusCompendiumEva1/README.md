@@ -17,7 +17,7 @@ Nexus Compendium es una plataforma web desarrollada en Laravel que permite la ge
 ## ✨ Características Implementadas
 
 ### 🎨 Identidad Visual
-- **Logo corporativo**: Diseño SVG personalizado
+- **Logo corporativo**: Imagen PNG personalizada
 - **Paleta de colores institucional**: 
   - Violeta Principal: `#6290C3`
   - Verde Menta: `#C2E7DA` 
@@ -50,7 +50,7 @@ NexusCompendium/
 ├── database/
 │   ├── migrations/                    # Estructura de BD
 │   └── seeders/                       # Datos iniciales institucionales
-├── public/images/logo.svg             # Logo corporativo
+├── public/images/logo.png             # Logo corporativo
 ├── resources/views/                   # 6 vistas Blade requeridas
 ├── routes/web.php                     # Rutas con clausuras
 ├── BRANDING.md                        # Justificación de identidad visual

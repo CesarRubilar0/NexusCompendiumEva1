@@ -10,8 +10,8 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <div class="logo-image">IPSS</div>
-                <div class="logo-text">Instituto Profesional de Sistemas de Salud</div>
+                <img src="images/logo.png" alt="Nexus Compendium Logo" class="logo-image">
+                <div class="logo-text">Nexus Compendium</div>
             </div>
         </div>
     </header>
@@ -41,7 +41,7 @@
                     👥 Usuarios del Sistema
                 </div>
                 <div id="usuarios-lista">
-                    <!-- Los usuarios se cargarán aquí dinámicamente -->
+                    <!-- Lista de usuarios del sistema -->
                 </div>
                 <div class="text-center mt-3">
                     <button class="btn btn-primary" onclick="generarUsuarios()">Generar Usuarios de Prueba</button>
@@ -119,7 +119,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Instituto Profesional de Sistemas de Salud</h3>
+                <h3>Instituto Profesional San Sebastián</h3>
                 <p>Formando profesionales en tecnologías aplicadas a la salud con excelencia académica y compromiso social.</p>
             </div>
             <div class="footer-section">
@@ -137,12 +137,12 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Instituto Profesional de Sistemas de Salud. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Instituto Profesional San Sebastián. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // Simulación del sistema Laravel con correos actualizados
+        // Sistema de usuarios con correos @ipss.cl
         function generarUsuarios() {
             const usuarios = [
                 { nombre: 'Juan Pérez Morales', email: 'juan.perez@ipss.cl', rol: 'Estudiante' },
@@ -172,7 +172,7 @@
 
             document.getElementById('usuarios-lista').innerHTML = html;
             
-            // También actualizar la tabla de correos
+            // Actualizar tabla de correos
             actualizarTablaCorreos(usuarios);
         }
 
@@ -194,10 +194,10 @@
         }
 
         function exportarUsuarios() {
-            alert('🎉 Lista de usuarios exportada exitosamente con correos @ipss.cl');
+            alert('🎉 Lista exportada exitosamente');
         }
 
-        // Generar usuarios al cargar la página
+        // Cargar usuarios al inicio
         window.onload = function() {
             generarUsuarios();
         }

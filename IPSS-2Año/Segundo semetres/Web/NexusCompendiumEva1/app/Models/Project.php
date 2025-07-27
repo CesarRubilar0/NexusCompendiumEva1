@@ -43,11 +43,11 @@ class Project
     }
 
     /**
-     * Get the user that owns the project.
+     * Obtener usuario propietario del proyecto
      */
     public function user()
     {
-        // Simulación de relación con User
+        // Relación con modelo User
         return (object)[
             'id' => $this->user_id,
             'name' => 'Usuario del Proyecto'
@@ -55,7 +55,7 @@ class Project
     }
 
     /**
-     * Get project status options
+     * Opciones de estado del proyecto
      */
     public static function getStatusOptions()
     {

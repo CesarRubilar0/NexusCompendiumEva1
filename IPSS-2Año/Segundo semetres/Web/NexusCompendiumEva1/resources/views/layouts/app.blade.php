@@ -235,7 +235,7 @@
     <header>
         <div class="header-content">
             <div class="logo-section">
-                <div class="logo">NC</div>
+                <img src="images/logo.png" alt="Nexus Compendium Logo" class="logo">
                 <h1 class="site-title">Nexus Compendium</h1>
             </div>
             <nav>
@@ -255,7 +255,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Nexus Compendium - Instituto Profesional de Sistemas de Salud</p>
+            <p>&copy; 2025 Nexus Compendium - Instituto Profesional San Sebastián</p>
             <p>Plataforma de Vinculación con el Medio</p>
         </div>
     </footer>
@@ -282,7 +282,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Instituto Profesional de Sistemas de Salud</h3>
+                <h3>Instituto Profesional San Sebastián</h3>
                 <p>Formando profesionales en tecnologías aplicadas a la salud con excelencia académica y compromiso social.</p>
                 <p style="color: var(--verde-brillante); font-weight: bold;">
                     🎨 Diseño basado en paleta Nexus Compendium
@@ -301,11 +301,8 @@
                 <p><a href="{{ url('/reports') }}">📊 Reportes</a></p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; {{ date('Y') }} Instituto Profesional de Sistemas de Salud. Todos los derechos reservados.</p>
-            <p style="font-size: 0.8rem; color: var(--verde-brillante);">
-                🎨 Paleta Nexus Compendium | 📧 Correos @ipss.cl
-            </p>
+                <div class="footer-bottom text-center">
+            <p>&copy; 2025 Nexus Compendium - Instituto Profesional San Sebastián</p>
         </div>
     </footer>
 

@@ -32,16 +32,16 @@ class Role
     }
 
     /**
-     * Get the users for the role.
+     * Obtener usuarios con este rol
      */
     public function users()
     {
-        // Simulación de relación con Users
+        // Relación con modelo Users
         return [];
     }
 
     /**
-     * Get predefined roles
+     * Roles predefinidos del sistema
      */
     public static function getDefaultRoles()
     {

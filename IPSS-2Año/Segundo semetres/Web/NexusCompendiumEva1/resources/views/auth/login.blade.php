@@ -6,7 +6,7 @@
 <div class="login-container">
     <div class="login-card">
         <div class="login-header">
-            <div class="logo">NC</div>
+            <img src="images/logo.png" alt="Nexus Compendium Logo" class="logo">
             <h1>Iniciar Sesión</h1>
             <p>Accede a tu cuenta de Nexus Compendium</p>
         </div>

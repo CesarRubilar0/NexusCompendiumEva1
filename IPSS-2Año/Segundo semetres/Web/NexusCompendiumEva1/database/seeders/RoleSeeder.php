@@ -8,13 +8,11 @@ use App\Models\Role;
 class RoleSeeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
+     * Poblar roles en la base de datos
      */
     public function run(): void
     {
-        // Roles del sistema IPSS según UserFactory
+        // Roles del sistema IPSS
         $roles = [
             [
                 'id' => 1,

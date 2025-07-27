@@ -10,9 +10,7 @@ use App\Factories\UserFactory;
 class DatabaseSeeder
 {
     /**
-     * Seed the application's database.
-     *
-     * @return void
+     * Poblar la base de datos con datos iniciales
      */
     public function run(): void
     {
@@ -54,7 +52,7 @@ class DatabaseSeeder
             echo "👨‍🎓 Estudiante " . ($index + 1) . ": {$student->name} ({$student->email})\n";
         }
         
-        $totalUsers = 1 + 1 + 3 + 2 + 10; // admin + coordinator + teachers + tutors + students
+        $totalUsers = 1 + 1 + 3 + 2 + 10; // Total de usuarios creados
         
         echo "\n3. RESUMEN DE POBLACIÓN DE DATOS:\n";
         echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
@@ -69,10 +67,7 @@ class DatabaseSeeder
     }
 
     /**
-     * Call the given seeder class.
-     *
-     * @param string $seederClass
-     * @return void
+     * Ejecutar una clase seeder específica
      */
     private function call(string $seederClass): void
     {

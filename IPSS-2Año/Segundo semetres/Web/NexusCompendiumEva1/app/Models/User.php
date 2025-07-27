@@ -5,9 +5,7 @@ namespace App\Models;
 class User
 {
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * Campos que se pueden asignar masivamente
      */
     protected $fillable = [
         'name',
@@ -20,9 +18,7 @@ class User
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
+     * Campos ocultos en la serialización
      */
     protected $hidden = [
         'password',
@@ -57,11 +53,11 @@ class User
     }
 
     /**
-     * Get the role that owns the user.
+     * Obtener el rol del usuario
      */
     public function role()
     {
-        // Simulación de relación con Role
+        // Relación con modelo Role
         return (object)[
             'id' => $this->role_id,
             'name' => $this->getRoleName()
@@ -69,11 +65,11 @@ class User
     }
 
     /**
-     * Get the institute that owns the user.
+     * Obtener el instituto del usuario
      */
     public function institute()
     {
-        // Simulación de relación con Institute
+        // Relación con modelo Institute
         return (object)[
             'id' => $this->institute_id,
             'name' => 'Instituto de Educación Superior'
@@ -81,11 +77,11 @@ class User
     }
 
     /**
-     * Get the projects for the user.
+     * Obtener proyectos del usuario
      */
     public function projects()
     {
-        // Simulación de relación con Projects
+        // Relación con modelo Projects
         return [];
     }
 

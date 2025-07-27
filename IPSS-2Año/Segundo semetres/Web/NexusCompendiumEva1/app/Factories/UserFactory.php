@@ -5,48 +5,38 @@ namespace App\Factories;
 use App\Models\User;
 
 /**
- * Factory para crear usuarios del Instituto Profesional de Sistemas de Salud
- * Compatible con el sistema IPSS y correos institucionales @ipss.cl
- * 
- * @extends Factory<\App\Models\User>
+ * Fábrica para generar usuarios del Instituto Profesional San Sebastián
+ * Genera datos de prueba con correos @ipss.cl
  */
 class UserFactory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
+     * Modelo asociado a esta fábrica
      */
     protected $model = User::class;
 
     /**
-     * Role ID personalizable para el factory
-     *
-     * @var int
+     * ID del rol por defecto (5 = Estudiante)
      */
-    protected $roleId = 5; // Estudiante por defecto
+    protected $roleId = 5;
 
     /**
-     * Estado de verificación de email
-     *
-     * @var bool
+     * Estado de verificación del email
      */
     protected $emailVerified = true;
 
     /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
+     * Datos predeterminados del usuario
      */
     public function definition(): array
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(), // Genera correos @ipss.cl
+            'email' => fake()->unique()->safeEmail(), // Correos @ipss.cl
             'email_verified_at' => $this->emailVerified ? now() : null,
-            'password' => \Hash::make('password'), // Contraseña por defecto
+            'password' => \Hash::make('password'), // Contraseña: password
             'role_id' => $this->roleId,
-            'institute_id' => 1, // Instituto IPSS por defecto
+            'institute_id' => 1, // IPSS por defecto
             'remember_token' => \Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
@@ -54,9 +44,7 @@ class UserFactory
     }
 
     /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return static
+     * Marcar email como no verificado
      */
     public function unverified(): static
     {
@@ -65,9 +53,7 @@ class UserFactory
     }
 
     /**
-     * Create a single user instance
-     *
-     * @return User
+     * Crear un usuario
      */
     public function make(): User
     {
@@ -76,10 +62,7 @@ class UserFactory
     }
 
     /**
-     * Create multiple user instances
-     *
-     * @param int $count
-     * @return array<User>
+     * Crear múltiples usuarios
      */
     public function count(int $count): array
     {
@@ -91,10 +74,7 @@ class UserFactory
     }
 
     /**
-     * Set a specific role for the user
-     *
-     * @param int $roleId
-     * @return static
+     * Asignar rol específico
      */
     public function withRole(int $roleId): static
     {
@@ -103,9 +83,7 @@ class UserFactory
     }
 
     /**
-     * Create a student user (role_id = 5)
-     *
-     * @return static
+     * Crear estudiante (rol 5)
      */
     public function student(): static
     {
@@ -113,9 +91,7 @@ class UserFactory
     }
 
     /**
-     * Create a teacher user (role_id = 3)
-     *
-     * @return static
+     * Crear docente (rol 3)
      */
     public function teacher(): static
     {
@@ -123,9 +99,7 @@ class UserFactory
     }
 
     /**
-     * Create an admin user (role_id = 1)
-     *
-     * @return static
+     * Crear administrador (rol 1)
      */
     public function admin(): static
     {
@@ -133,9 +107,7 @@ class UserFactory
     }
 
     /**
-     * Create a coordinator user (role_id = 2)
-     *
-     * @return static
+     * Crear coordinador (rol 2)
      */
     public function coordinator(): static
     {
@@ -143,9 +115,7 @@ class UserFactory
     }
 
     /**
-     * Create a tutor user (role_id = 4)
-     *
-     * @return static
+     * Crear tutor (rol 4)
      */
     public function tutor(): static
     {
@@ -153,9 +123,7 @@ class UserFactory
     }
 
     /**
-     * Create a user with verified email
-     *
-     * @return static
+     * Marcar email como verificado
      */
     public function verified(): static
     {

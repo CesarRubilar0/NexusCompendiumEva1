@@ -2,20 +2,18 @@
 <?php
 
 /**
- * Migración para crear la tabla de usuarios del sistema IPSS
- * Compatible con UserFactory y el sistema de correos @ipss.cl
+ * Migración: Tabla de usuarios del sistema IPSS
+ * Incluye roles, institutos y verificación de email
  */
 
 class CreateUsersTable
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
+     * Crear la tabla users
      */
     public function up(): void
     {
-        // SQL para crear la tabla users
+        // Estructura de la tabla usuarios
         $sql = "
             CREATE TABLE IF NOT EXISTS users (
                 id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -29,28 +27,25 @@ class CreateUsersTable
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 
-                -- Índices y claves foráneas
+                -- Índices para optimización
                 INDEX idx_role_id (role_id),
                 INDEX idx_institute_id (institute_id),
                 INDEX idx_email (email),
                 
-                -- Comentarios de campos
-                COMMENT 'Tabla de usuarios del Instituto Profesional de Sistemas de Salud'
+                -- Descripción de la tabla
+                COMMENT 'Tabla de usuarios del Instituto Profesional San Sebastián'
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         ";
         
-        echo "🗄️  Creando tabla 'users' con estructura completa...\n";
-        echo "   • Campo email con validación @ipss.cl\n";
-        echo "   • Sistema de roles integrado\n";
-        echo "   • Verificación de email incluida\n";
-        echo "   • Remember tokens para sesiones\n";
-        echo "✅ Tabla 'users' lista para el sistema IPSS\n\n";
+        echo "🗄️  Creando tabla 'users'...\n";
+        echo "   • Emails con validación @ipss.cl\n";
+        echo "   • Sistema de roles\n";
+        echo "   • Verificación de email\n";
+        echo "✅ Tabla 'users' creada\n\n";
     }
 
     /**
-     * Reverse the migrations.
-     *
-     * @return void
+     * Eliminar la tabla users
      */
     public function down(): void
     {

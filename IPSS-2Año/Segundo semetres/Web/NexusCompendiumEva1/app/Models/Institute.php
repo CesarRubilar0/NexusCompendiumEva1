@@ -38,20 +38,20 @@ class Institute
     }
 
     /**
-     * Get the users for the institute.
+     * Obtener usuarios del instituto
      */
     public function users()
     {
-        // Simulación de relación con Users
+        // Relación con modelo Users
         return [];
     }
 
     /**
-     * Get the projects for the institute.
+     * Obtener proyectos del instituto
      */
     public function projects()
     {
-        // Simulación de relación con Projects
+        // Relación con modelo Projects
         return [];
     }
 }

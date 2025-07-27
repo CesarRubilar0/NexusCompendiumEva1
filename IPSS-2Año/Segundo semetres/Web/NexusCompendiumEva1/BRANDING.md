@@ -3,7 +3,9 @@
 ## Nombre
 Elegimos el nombre **"Nexus Compendium"** porque representa perfectamente la misión del proyecto:
 
-- **Nexus**: Significa "conexión" o "vínculo", reflejando el objetivo principal de la plataforma de conectar al Instituto Profesional de Sistemas de Salud con el medio externo a través de proyectos de vinculación.
+## Significado del Nombre
+
+- **Nexus**: Significa "conexión" o "vínculo", reflejando el objetivo principal de la plataforma de conectar al Instituto Profesional San Sebastián con el medio externo a través de proyectos de vinculación.
 
 - **Compendium**: Significa "resumen" o "colección", representando la capacidad de la plataforma para recopilar, organizar y gestionar información completa sobre proyectos, participantes y resultados de vinculación con el medio.
 
@@ -79,4 +81,4 @@ La marca **Nexus Compendium** con esta identidad visual busca:
 
 ## Conclusión
 
-La marca Nexus Compendium refleja fielmente los objetivos del Instituto Profesional de Sistemas de Salud en su misión de vinculación con el medio, combinando elementos visuales que comunican tanto la seriedad académica como el dinamismo necesario para generar impacto positivo en la comunidad.
+La marca Nexus Compendium refleja fielmente los objetivos del Instituto Profesional San Sebastián en su misión de vinculación con el medio, combinando elementos visuales que comunican tanto la seriedad académica como el dinamismo necesario para generar impacto positivo en la comunidad.

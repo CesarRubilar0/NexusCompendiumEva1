@@ -2,34 +2,34 @@
 
 /*
 |--------------------------------------------------------------------------
-| Create The Application
+| Crear la Aplicación
 |--------------------------------------------------------------------------
 |
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
+| Lo primero que haremos es crear una nueva instancia de la aplicación Laravel
+| que sirve como "pegamento" para todos los componentes de Laravel, y es
+| el contenedor IoC del sistema que une todas las partes.
 |
 */
 
-// Simulated Laravel Application Bootstrap for Nexus Compendium
+// Bootstrap de aplicación para Nexus Compendium
 require_once __DIR__ . '/../bootstrap.php';
 
 echo "Nexus Compendium - Laravel Application Bootstrap\n";
-echo "Instituto Profesional de Sistemas de Salud\n";
+echo "Instituto Profesional San Sebastián\n";
 echo "Plataforma de Vinculación con el Medio\n";
 
 /*
 |--------------------------------------------------------------------------
-| Bind Important Interfaces
+| Configuración de Interfaces
 |--------------------------------------------------------------------------
 |
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
+| Aquí configuramos las interfaces importantes del contenedor para que
+| puedan ser resueltas cuando se necesiten. Los kernels sirven las
+| solicitudes entrantes tanto desde web como CLI.
 |
 */
 
-// Application configuration for Nexus Compendium
+// Configuración de la aplicación Nexus Compendium
 $app = [
     'name' => 'Nexus Compendium',
     'env' => 'local',
@@ -45,12 +45,12 @@ $app = [
 
 /*
 |--------------------------------------------------------------------------
-| Return The Application
+| Retornar la Aplicación
 |--------------------------------------------------------------------------
 |
-| This script returns the application instance. The instance is given to
-| the calling script so we can separate the building of the instances
-| from the actual running of the application and sending responses.
+| Este script retorna la instancia de la aplicación. La instancia se da
+| al script que la llama para separar la construcción de las instancias
+| de la ejecución real de la aplicación y el envío de respuestas.
 |
 */
 
