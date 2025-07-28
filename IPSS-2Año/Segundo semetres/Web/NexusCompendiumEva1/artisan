@@ -17,8 +17,62 @@ if (isset($argv[1])) {
             break;
             
         case 'migrate':
-            echo "Ejecutando migraciones...\n";
-            echo "Migraciones completadas exitosamente.\n";
+            // Configuración de conexión (ajusta los valores según tu entorno)
+            $host = 'localhost';
+            $db   = 'conecta_ip';
+            $user = 'root';
+            $pass = '';
+            $charset = 'utf8mb4';
+
+            $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+            try {
+                $pdo = new PDO($dsn, $user, $pass);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                // Crear tabla 'institutes'
+                $sqlInstitutes = "CREATE TABLE IF NOT EXISTS institutes (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(255) NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )";
+                $pdo->exec($sqlInstitutes);
+
+                // Crear tabla 'roles'
+                $sqlRoles = "CREATE TABLE IF NOT EXISTS roles (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(100) NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )";
+                $pdo->exec($sqlRoles);
+
+                // Crear tabla 'users'
+                $sqlUsers = "CREATE TABLE IF NOT EXISTS users (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(255) NOT NULL,
+                    email VARCHAR(255) NOT NULL UNIQUE,
+                    password VARCHAR(255) NOT NULL,
+                    role_id INT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (role_id) REFERENCES roles(id)
+                )";
+                $pdo->exec($sqlUsers);
+
+                // Crear tabla 'projects'
+                $sqlProjects = "CREATE TABLE IF NOT EXISTS projects (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    title VARCHAR(255) NOT NULL,
+                    description TEXT,
+                    user_id INT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (user_id) REFERENCES users(id)
+                )";
+                $pdo->exec($sqlProjects);
+
+                echo "Ejecutando migraciones...\n";
+                echo "Migraciones completadas exitosamente.\n";
+            } catch (PDOException $e) {
+                echo "Error en la migración: " . $e->getMessage() . "\n";
+            }
             break;
             
         case 'migrate:status':
@@ -34,6 +88,26 @@ if (isset($argv[1])) {
             echo "Seeders ejecutados exitosamente.\n";
             break;
             
+        case 'cache:clear':
+            echo "Limpiando la caché de la aplicación...\n";
+            echo "Caché limpiada exitosamente.\n";
+            break;
+            
+        case 'tinker':
+            echo "Bienvenido a Nexus Compendium Tinker (simulado).\n";
+            echo "Escribe 'exit' para salir.\n";
+            // Simulación de un REPL básico
+            while (true) {
+                echo ">>> ";
+                $input = trim(fgets(STDIN));
+                if ($input === 'exit') {
+                    echo "Saliendo de Tinker...\n";
+                    break;
+                }
+                echo "Simulación: ejecutando '$input'\n";
+            }
+            break;
+            
         case '--version':
             echo "Laravel Framework 10.0 (Simulado para Nexus Compendium)\n";
             break;
@@ -45,6 +119,8 @@ if (isset($argv[1])) {
             echo "  migrate        Ejecutar migraciones\n";
             echo "  migrate:status Mostrar estado de migraciones\n";
             echo "  db:seed        Ejecutar seeders\n";
+            echo "  cache:clear    Limpiar la caché de la aplicación\n";
+            echo "  tinker         Consola interactiva (simulada)\n";
             echo "  --version      Mostrar versión\n";
             break;
     }
