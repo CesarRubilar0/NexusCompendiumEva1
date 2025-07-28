@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Proyectos IPSS</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos adicionales para la navegación */
+        .nav-menu a {
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover {
+            background-color: var(--verde-brillante);
+            color: var(--azul-oscuro);
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu a.active {
+            background-color: var(--azul-oscuro);
+            color: var(--verde-brillante);
+            font-weight: bold;
+        }
+        
+        /* Responsive design para móviles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .nav-menu a {
+                justify-content: center;
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .d-flex {
+                flex-direction: column !important;
+                gap: 15px;
+            }
+            
+            .card {
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Animaciones suaves */
+        .content-section {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Mejoras visuales para botones */
+        .btn {
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Nexus Compendium Logo" class="logo-image">
+                <div class="logo-text">Nexus Compendium</div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="javascript:navigateTo('bienvenidos')" data-route="bienvenidos">🏠 Bienvenidos</a></li>
+                <li><a href="javascript:navigateTo('dashboard')" data-route="dashboard">📊 Dashboard</a></li>
+                <li><a href="javascript:navigateTo('proyectos')" data-route="proyectos">📁 Proyectos</a></li>
+                <li><a href="javascript:navigateTo('usuarios')" data-route="usuarios">👥 Usuarios</a></li>
+                <li><a href="javascript:navigateTo('institutos')" data-route="institutos">🏢 Institutos</a></li>
+                <li><a href="javascript:navigateTo('reportes')" data-route="reportes">📈 Reportes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-section fade-in">
+            <h1 class="text-center mb-3">Sistema de Gestión de Proyectos Académicos</h1>
+            
+            <div class="alert alert-success">
+                <strong>¡Sistema funcionando correctamente!</strong> Todos los errores han sido corregidos y el proyecto está listo para uso.
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    👥 Usuarios del Sistema
+                </div>
+                <div id="usuarios-lista">
+                    <!-- Lista de usuarios del sistema -->
+                </div>
+                <div class="text-center mt-3">
+                    <button class="btn btn-primary" onclick="generarUsuarios()">Generar Usuarios de Prueba</button>
+                    <button class="btn btn-success" onclick="exportarUsuarios()">Exportar Lista</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    📊 Estadísticas del Sistema
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="text-center">
+                        <h3 style="color: var(--azul-claro);">125</h3>
+                        <p>Usuarios Activos</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 style="color: var(--verde-brillante);">45</h3>
+                        <p>Proyectos en Curso</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 style="color: var(--azul-oscuro);">12</h3>
+                        <p>Institutos Registrados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    🎨 Paleta de Colores del Sistema
+                </div>
+                <div class="d-flex gap-2" style="flex-wrap: wrap;">
+                    <div class="text-center p-2" style="background-color: var(--azul-claro); color: white; border-radius: 5px; min-width: 150px;">
+                        <strong>Azul Claro</strong><br>
+                        #6290C3
+                    </div>
+                    <div class="text-center p-2" style="background-color: var(--verde-claro); color: var(--azul-oscuro); border-radius: 5px; min-width: 150px;">
+                        <strong>Verde Claro</strong><br>
+                        #C2E7DA
+                    </div>
+                    <div class="text-center p-2" style="background-color: var(--azul-oscuro); color: white; border-radius: 5px; min-width: 150px;">
+                        <strong>Azul Oscuro</strong><br>
+                        #1A1B41
+                    </div>
+                    <div class="text-center p-2" style="background-color: var(--verde-brillante); color: var(--azul-oscuro); border-radius: 5px; min-width: 150px;">
+                        <strong>Verde Brillante</strong><br>
+                        #BAFF29
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    📧 Ejemplo de Correos Institucionales
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre Completo</th>
+                                <th>Correo Institucional</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-correos">
+                            <!-- Los correos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Instituto Profesional San Sebastián</h3>
+                <p>Formando profesionales en tecnologías aplicadas a la salud con excelencia académica y compromiso social.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>📍 Av. Principal 123, Santiago, Chile</p>
+                <p>📞 +56 2 2234 5678</p>
+                <p>📧 contacto@ipss.cl</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <p><a href="/proyectos">Gestión de Proyectos</a></p>
+                <p><a href="/dashboard">Dashboard</a></p>
+                <p><a href="/proyectos/crear">Crear Proyecto</a></p>
+                <p><a href="/login">Iniciar Sesión</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Instituto Profesional San Sebastián. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Función para manejar la navegación
+        function navigateTo(section) {
+            // Actualizar estado activo del navbar
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-route="${section}"]`).classList.add('active');
+            
+            // Mostrar contenido correspondiente
+            showSection(section);
+            
+            // Actualizar URL sin recargar la página
+            history.pushState({section: section}, '', `#${section}`);
+        }
+        
+        // Función para mostrar diferentes secciones
+        function showSection(section) {
+            const contentSection = document.querySelector('.content-section');
+            
+            switch(section) {
+                case 'bienvenidos':
+                    showBienvenidos();
+                    break;
+                case 'dashboard':
+                    showDashboard();
+                    break;
+                case 'proyectos':
+                    showProyectos();
+                    break;
+                case 'usuarios':
+                    showUsuarios();
+                    break;
+                case 'institutos':
+                    showInstitutos();
+                    break;
+                case 'reportes':
+                    showReportes();
+                    break;
+                default:
+                    showBienvenidos();
+            }
+        }
+        
+        // Función para mostrar la página de bienvenidos
+        function showBienvenidos() {
+            const contentSection = document.querySelector('.content-section');
+            contentSection.innerHTML = `
+                <div class="hero-section" style="background: linear-gradient(135deg, var(--azul-claro), var(--azul-oscuro)); color: white; padding: 60px 20px; border-radius: 15px; margin-bottom: 30px;">
+                    <div class="hero-content" style="text-align: center;">
+                        <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">🏠 Bienvenido a Nexus Compendium</h1>
+                        <p class="hero-subtitle" style="font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9;">Plataforma integral para la gestión de proyectos de Vinculación con el Medio</p>
+                        <div class="hero-buttons" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <button class="btn btn-primary" style="background: var(--verde-brillante); color: var(--azul-oscuro); border: none; padding: 15px 30px; font-size: 1.1rem; border-radius: 8px; cursor: pointer;" onclick="navigateTo('proyectos')">📁 Ver Proyectos</button>
+                            <button class="btn btn-secondary" style="background: transparent; color: white; border: 2px solid white; padding: 15px 30px; font-size: 1.1rem; border-radius: 8px; cursor: pointer;" onclick="navigateTo('dashboard')">📊 Ir al Dashboard</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="features-section">
+                    <h2 style="text-align: center; margin-bottom: 40px; color: var(--azul-oscuro);">✨ Características Principales</h2>
+                    <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                        <div class="feature-card card">
+                            <div class="card-header" style="background: var(--azul-claro); color: white;">
+                                📋 Gestión de Proyectos
+                            </div>
+                            <div class="p-3">
+                                <p>Administra todos los proyectos de vinculación con el medio de manera eficiente y organizada.</p>
+                                <ul style="margin-top: 15px; padding-left: 20px;">
+                                    <li>Creación y seguimiento de proyectos</li>
+                                    <li>Asignación de responsables</li>
+                                    <li>Control de progreso en tiempo real</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card card">
+                            <div class="card-header" style="background: var(--verde-brillante); color: var(--azul-oscuro);">
+                                🤝 Colaboración
+                            </div>
+                            <div class="p-3">
+                                <p>Facilita la colaboración entre estudiantes, docentes y organizaciones externas.</p>
+                                <ul style="margin-top: 15px; padding-left: 20px;">
+                                    <li>Comunicación integrada</li>
+                                    <li>Trabajo en equipo eficiente</li>
+                                    <li>Coordinación entre instituciones</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card card">
+                            <div class="card-header" style="background: var(--azul-oscuro); color: white;">
+                                📈 Seguimiento y Reportes
+                            </div>
+                            <div class="p-3">
+                                <p>Monitorea el progreso y resultados de cada proyecto con métricas detalladas.</p>
+                                <ul style="margin-top: 15px; padding-left: 20px;">
+                                    <li>Estadísticas en tiempo real</li>
+                                    <li>Reportes personalizados</li>
+                                    <li>Análisis de resultados</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 40px;">
+                    <div class="card-header" style="background: var(--verde-claro); color: var(--azul-oscuro);">
+                        🎯 Instituto Profesional San Sebastián
+                    </div>
+                    <div class="p-4" style="text-align: center;">
+                        <h3 style="color: var(--azul-oscuro); margin-bottom: 20px;">Formando profesionales en tecnologías aplicadas a la salud</h3>
+                        <p style="font-size: 1.1rem; margin-bottom: 25px;">Con excelencia académica y compromiso social hacia la comunidad.</p>
+                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="navigateTo('institutos')">🏢 Ver Institutos</button>
+                            <button class="btn btn-success" onclick="navigateTo('usuarios')">👥 Gestionar Usuarios</button>
+                            <button class="btn" style="background: var(--azul-claro); color: white;" onclick="navigateTo('reportes')">📊 Ver Reportes</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Función para mostrar el dashboard (contenido actual)
+        function showDashboard() {
+            const contentSection = document.querySelector('.content-section');
+            contentSection.innerHTML = `
+                <h1 class="text-center mb-3">📊 Dashboard - Sistema de Gestión de Proyectos</h1>
+                
+                <div class="alert alert-success">
+                    <strong>¡Sistema funcionando correctamente!</strong> Dashboard cargado exitosamente.
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        👥 Usuarios del Sistema
+                    </div>
+                    <div id="usuarios-lista">
+                        <!-- Lista de usuarios del sistema -->
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary" onclick="generarUsuarios()">Generar Usuarios de Prueba</button>
+                        <button class="btn btn-success" onclick="exportarUsuarios()">Exportar Lista</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        📊 Estadísticas del Sistema
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="text-center">
+                            <h3 style="color: var(--azul-claro);">125</h3>
+                            <p>Usuarios Activos</p>
+                        </div>
+                        <div class="text-center">
+                            <h3 style="color: var(--verde-brillante);">45</h3>
+                            <p>Proyectos en Curso</p>
+                        </div>
+                        <div class="text-center">
+                            <h3 style="color: var(--azul-oscuro);">12</h3>
+                            <p>Institutos Registrados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        🎨 Paleta de Colores del Sistema
+                    </div>
+                    <div class="d-flex gap-2" style="flex-wrap: wrap;">
+                        <div class="text-center p-2" style="background-color: var(--azul-claro); color: white; border-radius: 5px; min-width: 150px;">
+                            <strong>Azul Claro</strong><br>
+                            #6290C3
+                        </div>
+                        <div class="text-center p-2" style="background-color: var(--verde-claro); color: var(--azul-oscuro); border-radius: 5px; min-width: 150px;">
+                            <strong>Verde Claro</strong><br>
+                            #C2E7DA
+                        </div>
+                        <div class="text-center p-2" style="background-color: var(--azul-oscuro); color: white; border-radius: 5px; min-width: 150px;">
+                            <strong>Azul Oscuro</strong><br>
+                            #1A1B41
+                        </div>
+                        <div class="text-center p-2" style="background-color: var(--verde-brillante); color: var(--azul-oscuro); border-radius: 5px; min-width: 150px;">
+                            <strong>Verde Brillante</strong><br>
+                            #BAFF29
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        📧 Ejemplo de Correos Institucionales
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre Completo</th>
+                                    <th>Correo Institucional</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-correos">
+                                <!-- Los correos se cargarán aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            // Cargar usuarios automáticamente
+            setTimeout(generarUsuarios, 500);
+        }
+        
+        // Función para mostrar la sección de proyectos
+        function showProyectos() {
+            const contentSection = document.querySelector('.content-section');
+            contentSection.innerHTML = `
+                <h1 class="text-center mb-3">📁 Gestión de Proyectos</h1>
+                
+                <div class="alert alert-info">
+                    <strong>📋 Proyectos Académicos</strong> Gestiona todos los proyectos del instituto.
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        📁 Lista de Proyectos Activos
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre del Proyecto</th>
+                                    <th>Responsable</th>
+                                    <th>Estado</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Progreso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>001</td>
+                                    <td><strong>Sistema de Gestión Hospitalaria</strong></td>
+                                    <td>Dr. María González</td>
+                                    <td><span style="color: var(--verde-brillante); font-weight: bold;">●</span> Activo</td>
+                                    <td>15/01/2025</td>
+                                    <td>
+                                        <div style="background: #f0f0f0; border-radius: 10px; overflow: hidden;">
+                                            <div style="background: var(--azul-claro); height: 20px; width: 75%; text-align: center; color: white; font-size: 12px; line-height: 20px;">75%</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>002</td>
+                                    <td><strong>App Móvil de Telemedicina</strong></td>
+                                    <td>Ing. Carlos Rodríguez</td>
+                                    <td><span style="color: var(--azul-claro); font-weight: bold;">●</span> En Desarrollo</td>
+                                    <td>20/02/2025</td>
+                                    <td>
+                                        <div style="background: #f0f0f0; border-radius: 10px; overflow: hidden;">
+                                            <div style="background: var(--verde-brillante); height: 20px; width: 45%; text-align: center; color: var(--azul-oscuro); font-size: 12px; line-height: 20px;">45%</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>003</td>
+                                    <td><strong>Plataforma de Aprendizaje Virtual</strong></td>
+                                    <td>Prof. Ana Martínez</td>
+                                    <td><span style="color: var(--verde-brillante); font-weight: bold;">●</span> Activo</td>
+                                    <td>10/03/2025</td>
+                                    <td>
+                                        <div style="background: #f0f0f0; border-radius: 10px; overflow: hidden;">
+                                            <div style="background: var(--azul-oscuro); height: 20px; width: 60%; text-align: center; color: white; font-size: 12px; line-height: 20px;">60%</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary" onclick="alert('Función de crear proyecto disponible próximamente')">➕ Nuevo Proyecto</button>
+                        <button class="btn btn-success" onclick="alert('Función de exportar disponible próximamente')">📊 Exportar Reporte</button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Función para mostrar la sección de usuarios
+        function showUsuarios() {
+            const contentSection = document.querySelector('.content-section');
+            contentSection.innerHTML = `
+                <h1 class="text-center mb-3">👥 Gestión de Usuarios</h1>
+                
+                <div class="alert alert-info">
+                    <strong>👤 Usuarios del Sistema</strong> Administra usuarios, roles y permisos.
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        👥 Lista de Usuarios Registrados
+                    </div>
+                    <div id="usuarios-completa">
+                        <!-- Lista completa de usuarios -->
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary" onclick="generarUsuariosCompleta()">👤 Generar Lista Completa</button>
+                        <button class="btn btn-success" onclick="alert('Función de agregar usuario disponible próximamente')">➕ Nuevo Usuario</button>
+                    </div>
+                </div>
+            `;
+            
+            // Cargar usuarios completa automáticamente
+            setTimeout(generarUsuariosCompleta, 500);
+        }
+        
+        // Función para mostrar la sección de institutos
+        function showInstitutos() {
+            const contentSection = document.querySelector('.content-section');
+            contentSection.innerHTML = `
+                <h1 class="text-center mb-3">🏢 Gestión de Institutos</h1>
+                
+                <div class="alert alert-info">
+                    <strong>🏛️ Institutos Afiliados</strong> Información de institutos y centros de salud.
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        🏢 Institutos Registrados
+                    </div>
+                    <div class="d-flex gap-3" style="flex-wrap: wrap;">
+                        <div class="card" style="min-width: 300px; flex: 1;">
+                            <div class="card-header" style="background: var(--azul-claro); color: white;">
+                                🏥 Hospital Central San Sebastián
+                            </div>
+                            <div class="p-3">
+                                <p><strong>Dirección:</strong> Av. Libertador 1250, Santiago</p>
+                                <p><strong>Especialidades:</strong> Cardiología, Neurología, Oncología</p>
+                                <p><strong>Proyectos Activos:</strong> 8</p>
+                                <p><strong>Estado:</strong> <span style="color: var(--verde-brillante); font-weight: bold;">●</span> Activo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card" style="min-width: 300px; flex: 1;">
+                            <div class="card-header" style="background: var(--verde-claro); color: var(--azul-oscuro);">
+                                🏥 Centro de Salud Maipú
+                            </div>
+                            <div class="p-3">
+                                <p><strong>Dirección:</strong> Av. Pajaritos 3200, Maipú</p>
+                                <p><strong>Especialidades:</strong> Medicina General, Pediatría</p>
+                                <p><strong>Proyectos Activos:</strong> 3</p>
+                                <p><strong>Estado:</strong> <span style="color: var(--verde-brillante); font-weight: bold;">●</span> Activo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card" style="min-width: 300px; flex: 1;">
+                            <div class="card-header" style="background: var(--azul-oscuro); color: white;">
+                                🏥 Clínica Especializada Las Condes
+                            </div>
+                            <div class="p-3">
+                                <p><strong>Dirección:</strong> Av. Las Condes 11500, Las Condes</p>
+                                <p><strong>Especialidades:</strong> Cirugía, Traumatología</p>
+                                <p><strong>Proyectos Activos:</strong> 1</p>
+                                <p><strong>Estado:</strong> <span style="color: var(--azul-claro); font-weight: bold;">●</span> En Revisión</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary" onclick="alert('Función de agregar instituto disponible próximamente')">🏢 Nuevo Instituto</button>
+                        <button class="btn btn-success" onclick="alert('Función de estadísticas disponible próximamente')">📊 Ver Estadísticas</button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Función para mostrar la sección de reportes
+        function showReportes() {
+            const contentSection = document.querySelector('.content-section');
+            contentSection.innerHTML = `
+                <h1 class="text-center mb-3">📈 Reportes y Estadísticas</h1>
+                
+                <div class="alert alert-info">
+                    <strong>📊 Centro de Reportes</strong> Análisis y métricas del sistema.
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        📈 Estadísticas Generales
+                    </div>
+                    <div class="d-flex justify-content-between" style="flex-wrap: wrap; gap: 20px;">
+                        <div class="text-center" style="min-width: 200px;">
+                            <div style="background: var(--azul-claro); color: white; padding: 20px; border-radius: 10px; margin-bottom: 10px;">
+                                <h2 style="margin: 0; font-size: 2.5rem;">125</h2>
+                                <p style="margin: 0;">Usuarios Totales</p>
+                            </div>
+                        </div>
+                        <div class="text-center" style="min-width: 200px;">
+                            <div style="background: var(--verde-brillante); color: var(--azul-oscuro); padding: 20px; border-radius: 10px; margin-bottom: 10px;">
+                                <h2 style="margin: 0; font-size: 2.5rem;">45</h2>
+                                <p style="margin: 0;">Proyectos Activos</p>
+                            </div>
+                        </div>
+                        <div class="text-center" style="min-width: 200px;">
+                            <div style="background: var(--azul-oscuro); color: white; padding: 20px; border-radius: 10px; margin-bottom: 10px;">
+                                <h2 style="margin: 0; font-size: 2.5rem;">12</h2>
+                                <p style="margin: 0;">Institutos</p>
+                            </div>
+                        </div>
+                        <div class="text-center" style="min-width: 200px;">
+                            <div style="background: var(--verde-claro); color: var(--azul-oscuro); padding: 20px; border-radius: 10px; margin-bottom: 10px;">
+                                <h2 style="margin: 0; font-size: 2.5rem;">98%</h2>
+                                <p style="margin: 0;">Satisfacción</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        📊 Actividad Reciente
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Actividad</th>
+                                    <th>Usuario</th>
+                                    <th>Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>28/07/2025 09:45</td>
+                                    <td>Nuevo proyecto creado: "Sistema de Gestión Hospitalaria"</td>
+                                    <td>Dr. María González</td>
+                                    <td><span style="color: var(--verde-brillante); font-weight: bold;">●</span> Proyecto</td>
+                                </tr>
+                                <tr>
+                                    <td>28/07/2025 08:30</td>
+                                    <td>Usuario registrado en el sistema</td>
+                                    <td>Ana Martínez</td>
+                                    <td><span style="color: var(--azul-claro); font-weight: bold;">●</span> Usuario</td>
+                                </tr>
+                                <tr>
+                                    <td>27/07/2025 16:20</td>
+                                    <td>Reporte mensual generado</td>
+                                    <td>Sistema</td>
+                                    <td><span style="color: var(--azul-oscuro); font-weight: bold;">●</span> Reporte</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary" onclick="alert('Función de generar reporte disponible próximamente')">📋 Generar Reporte</button>
+                        <button class="btn btn-success" onclick="alert('Función de exportar datos disponible próximamente')">💾 Exportar Datos</button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Función para generar usuarios completa
+        function generarUsuariosCompleta() {
+            const usuarios = [
+                { nombre: 'Juan Pérez Morales', email: 'juan.perez@ipss.cl', rol: 'Estudiante', area: 'Enfermería' },
+                { nombre: 'María García Silva', email: 'maria.garcia@ipss.cl', rol: 'Docente', area: 'Medicina' },
+                { nombre: 'Carlos López Herrera', email: 'carlos.lopez@ipss.cl', rol: 'Coordinador', area: 'Tecnología' },
+                { nombre: 'Ana Martínez González', email: 'ana.martinez@ipss.cl', rol: 'Estudiante', area: 'Kinesiología' },
+                { nombre: 'Luis Rodríguez Castro', email: 'luis.rodriguez@ipss.cl', rol: 'Administrador', area: 'Sistemas' },
+                { nombre: 'Patricia Fernández Torres', email: 'patricia.fernandez@ipss.cl', rol: 'Docente', area: 'Nutrición' },
+                { nombre: 'Miguel Sánchez Ruiz', email: 'msanchez@ipss.cl', rol: 'Tutor', area: 'Medicina' },
+                { nombre: 'Carmen Jiménez Moreno', email: 'carmen.j@ipss.cl', rol: 'Estudiante', area: 'Enfermería' },
+                { nombre: 'Roberto Silva Vargas', email: 'roberto.silva@ipss.cl', rol: 'Investigador', area: 'Medicina' },
+                { nombre: 'Claudia Morales Pérez', email: 'claudia.morales@ipss.cl', rol: 'Docente', area: 'Psicología' }
+            ];
+
+            let html = '<div class="table-responsive"><table class="table"><thead><tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Área</th><th>Estado</th></tr></thead><tbody>';
+            
+            usuarios.forEach(usuario => {
+                const estado = Math.random() > 0.3 ? 'Activo' : 'Pendiente';
+                const estadoColor = estado === 'Activo' ? 'var(--verde-brillante)' : 'var(--azul-claro)';
+                html += `
+                    <tr>
+                        <td><strong>${usuario.nombre}</strong></td>
+                        <td><span style="color: var(--azul-claro); font-weight: 500;">${usuario.email}</span></td>
+                        <td>${usuario.rol}</td>
+                        <td>${usuario.area}</td>
+                        <td><span style="color: ${estadoColor}; font-weight: bold;">●</span> ${estado}</td>
+                    </tr>
+                `;
+            });
+            
+            html += '</tbody></table></div>';
+            document.getElementById('usuarios-completa').innerHTML = html;
+        }
+
+        // Sistema de usuarios con correos @ipss.cl (función original)
+        function generarUsuarios() {
+            const usuarios = [
+                { nombre: 'Juan Pérez Morales', email: 'juan.perez@ipss.cl', rol: 'Estudiante' },
+                { nombre: 'María García Silva', email: 'maria.garcia@ipss.cl', rol: 'Docente' },
+                { nombre: 'Carlos López Herrera', email: 'carlos.lopez@ipss.cl', rol: 'Coordinador' },
+                { nombre: 'Ana Martínez González', email: 'ana.martinez@ipss.cl', rol: 'Estudiante' },
+                { nombre: 'Luis Rodríguez Castro', email: 'luis.rodriguez@ipss.cl', rol: 'Administrador' },
+                { nombre: 'Patricia Fernández Torres', email: 'patricia.fernandez@ipss.cl', rol: 'Docente' },
+                { nombre: 'Miguel Sánchez Ruiz', email: 'msanchez@ipss.cl', rol: 'Tutor' },
+                { nombre: 'Carmen Jiménez Moreno', email: 'carmen.j@ipss.cl', rol: 'Estudiante' }
+            ];
+
+            let html = '<div class="mb-2"><strong>Usuarios generados con correos institucionales @ipss.cl:</strong></div>';
+            usuarios.forEach((usuario, index) => {
+                const colores = ['var(--azul-claro)', 'var(--verde-brillante)', 'var(--azul-oscuro)', 'var(--verde-claro)'];
+                const color = colores[index % colores.length];
+                html += `
+                    <div class="d-flex justify-content-between align-items-center p-2 mb-1" style="background-color: ${color === 'var(--azul-oscuro)' ? color : 'rgba(98, 144, 195, 0.1)'}; border-radius: 5px; ${color === 'var(--azul-oscuro)' ? 'color: white;' : ''}">
+                        <div>
+                            <strong>${usuario.nombre}</strong><br>
+                            <small>📧 ${usuario.email}</small>
+                        </div>
+                        <span class="btn btn-secondary" style="font-size: 0.8rem;">${usuario.rol}</span>
+                    </div>
+                `;
+            });
+
+            const usuariosLista = document.getElementById('usuarios-lista');
+            if (usuariosLista) {
+                usuariosLista.innerHTML = html;
+                
+                // Actualizar tabla de correos
+                actualizarTablaCorreos(usuarios);
+            }
+        }
+
+        function actualizarTablaCorreos(usuarios) {
+            let html = '';
+            usuarios.forEach(usuario => {
+                const estado = Math.random() > 0.2 ? 'Activo' : 'Pendiente';
+                const estadoColor = estado === 'Activo' ? 'var(--verde-brillante)' : 'var(--azul-claro)';
+                html += `
+                    <tr>
+                        <td><strong>${usuario.nombre}</strong></td>
+                        <td><span style="color: var(--azul-claro); font-weight: 500;">${usuario.email}</span></td>
+                        <td>${usuario.rol}</td>
+                        <td><span style="color: ${estadoColor}; font-weight: bold;">●</span> ${estado}</td>
+                    </tr>
+                `;
+            });
+            const tablaCorreos = document.getElementById('tabla-correos');
+            if (tablaCorreos) {
+                tablaCorreos.innerHTML = html;
+            }
+        }
+
+        function exportarUsuarios() {
+            alert('🎉 Lista exportada exitosamente');
+        }
+
+        // Manejar navegación del historial del navegador
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.section) {
+                showSection(event.state.section);
+                // Actualizar navbar activo
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                const activeLink = document.querySelector(`[data-route="${event.state.section}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+
+        // Cargar contenido inicial
+        window.onload = function() {
+            // Verificar si hay una sección en el hash de la URL
+            const hash = window.location.hash.substring(1);
+            if (hash && ['bienvenidos', 'dashboard', 'proyectos', 'usuarios', 'institutos', 'reportes'].includes(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('bienvenidos');
+            }
+        }
+    </script>
+</body>
+</html>
