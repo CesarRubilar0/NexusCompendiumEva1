@@ -1,0 +1,45 @@
+# Configuración específica para Laragon
+# Nexus Compendium - Sistema de Gestión de Proyectos IPSS
+
+# SERVIDOR WEB
+DocumentRoot="public"
+IndexFile="index.php"
+DefaultTimeZone="America/Santiago"
+
+# PHP
+PHP_VERSION="8.1+"
+PHP_EXTENSIONS="mysqli,pdo,pdo_mysql,mbstring,openssl,tokenizer,xml,ctype,json,fileinfo"
+
+# BASE DE DATOS
+DATABASE_TYPE="MySQL"
+DATABASE_HOST="127.0.0.1"
+DATABASE_PORT="3306"
+DATABASE_NAME="ipss_projects"
+DATABASE_USER="root"
+DATABASE_PASSWORD=""
+
+# CONFIGURACIÓN LARAVEL
+LARAVEL_VERSION="10.0"
+ARTISAN_ENABLED=true
+COMPOSER_ENABLED=true
+
+# RUTAS PRINCIPALES
+HOME_ROUTE="/"
+DASHBOARD_ROUTE="/dashboard"
+PROJECTS_ROUTE="/proyectos"
+
+# ARCHIVOS REQUERIDOS
+REQUIRED_FILES="artisan,composer.json,package.json,.env,public/index.php"
+
+# COMANDOS ARTISAN DISPONIBLES
+ARTISAN_COMMANDS="serve,migrate,db:seed,route:list,list,env,optimize"
+
+# PUERTOS
+DEFAULT_PORT=8000
+LARAGON_PORT=80
+
+# NOTAS DE INSTALACIÓN
+# 1. Colocar en carpeta www de Laragon
+# 2. Ejecutar: composer install (si composer está disponible)
+# 3. Ejecutar: php artisan install
+# 4. Acceder vía: http://nexuscompendiumeva1.test o http://localhost/NexusCompendiumEva1
