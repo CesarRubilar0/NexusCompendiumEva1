@@ -62,6 +62,7 @@
     </div>
 </div>
 
+@push('styles')
 <style>
     .page-header {
         text-align: center;
@@ -159,4 +160,5 @@
         }
     }
 </style>
+@endpush
 @endsection

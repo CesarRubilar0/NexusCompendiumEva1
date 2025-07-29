@@ -1,4 +1,3 @@
-
 <?php
 
 require_once __DIR__ . '/../bootstrap.php';
@@ -64,6 +63,4 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard', [DashboardController::class, 'index']);
