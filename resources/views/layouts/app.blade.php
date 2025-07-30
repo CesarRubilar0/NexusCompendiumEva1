@@ -110,6 +110,20 @@
             color: var(--dark-blue);
         }
 
+        /* Special styling for login button */
+        .nav-menu a.login-btn {
+            background-color: var(--bright-green);
+            color: var(--dark-blue);
+            font-weight: 600;
+            border: 2px solid var(--bright-green);
+        }
+
+        .nav-menu a.login-btn:hover {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            border-color: var(--white);
+        }
+
         /* Mobile Menu */
         .mobile-menu-toggle {
             display: none;
@@ -243,7 +257,7 @@
         <div class="header-content">
             <div class="logo-section">
                 <div class="logo">
-                    <img src="/images/logo.png" alt="Nexus Compendium Logo" />
+                    <img src="/images/logo.png?v=<?php echo time(); ?>" alt="Nexus Compendium Logo" />
                 </div>
                 <h1 class="site-title">Nexus Compendium</h1>
             </div>
@@ -256,6 +270,7 @@
                     <li><a href="/usuarios" id="nav-usuarios">👥 Usuarios</a></li>
                     <li><a href="/institutos" id="nav-institutos">🏢 Institutos</a></li>
                     <li><a href="/reportes" id="nav-reportes">📈 Reportes</a></li>
+                    <li><a href="/login" id="nav-login" class="login-btn">🔑 Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -278,9 +293,9 @@
             <div class="footer-section">
                 <h3>📞 Contacto</h3>
                 <p>📍 Av. Principal 123, Santiago, Chile</p>
-                <p>📧 contacto@ipss.cl</p>
+                <p>📧 contacto@nexuscompendium.cl</p>
                 <p>☎️ +56 2 2234 5678</p>
-                <p>🌐 www.ipss.cl</p>
+                <p>🌐 www.nexuscompendium.cl</p>
             </div>
             <div class="footer-section">
                 <h3>🔗 Enlaces Rápidos</h3>

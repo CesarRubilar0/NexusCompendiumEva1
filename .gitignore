@@ -39,3 +39,14 @@ Thumbs.db
 # Temporales
 *.tmp
 *.temp
+
+# Archivos de test y debug (SEGURIDAD)
+*test*.php
+*debug*.php
+*temp*.php
+*test*.html
+*inicio*.html
+test/
+tests/temp/
+*.test.js
+*.spec.js

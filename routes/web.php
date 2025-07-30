@@ -75,6 +75,12 @@ if (!function_exists('view')) {
         // Compilar y renderizar la vista Blade
         $content = file_get_contents($viewPath);
         
+        // Reemplazar variables en el contenido
+        foreach ($data as $key => $value) {
+            $content = str_replace('{{ $' . $key . ' }}', htmlspecialchars($value), $content);
+            $content = str_replace('{!! $' . $key . ' !!}', $value, $content);
+        }
+        
         // Procesar @extends
         if (preg_match('/@extends\([\'"](.+?)[\'"]\)/', $content, $matches)) {
             $layoutName = $matches[1];
@@ -143,7 +149,11 @@ Route::get('/proyectos/{id}', function ($id) {
 
 // Rutas adicionales para el navbar
 Route::get('/usuarios', function () {
-    return view('dashboard'); // Por ahora redirige al dashboard
+    return view('usuarios.index');
+});
+
+Route::get('/usuarios/crear', function () {
+    return view('usuarios.create');
 });
 
 Route::get('/institutos', function () {

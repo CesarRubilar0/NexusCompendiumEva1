@@ -78,17 +78,44 @@ if (isset($_GET['page'])) {
 // DEBUG: Log de la página solicitada
 file_put_contents(__DIR__ . '/debug.log', date('Y-m-d H:i:s') . " - PAGE: '$page' from URI: " . $_SERVER['REQUEST_URI'] . "\n", FILE_APPEND);
 
-// Definir las páginas disponibles
+// Definir las páginas disponibles según rúbrica
 $pages = [
     '' => 'welcome',
     'bienvenidos' => 'welcome',
-    'dashboard' => 'dashboard.dashboard',
     'proyectos' => 'proyectos.index',
+    'proyectos/crear' => 'proyectos.create',
+    'dashboard' => 'dashboard.dashboard',
     'usuarios' => 'usuarios.index',
     'institutos' => 'institutos.index',
     'reportes' => 'reportes.index',
     'login' => 'auth.login',
+    'registro' => 'auth.registro',
 ];
+
+// Manejo de formulario de login
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $page === 'login') {
+    file_put_contents(__DIR__ . '/debug.log', date('Y-m-d H:i:s') . " - LOGIN ATTEMPT: " . $_POST['email'] . "\n", FILE_APPEND);
+    
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    
+    // Simulación de autenticación (en un proyecto real usarías base de datos)
+    if ($email === 'NexusC@ipss.cl' && $password === '123456') {
+        // Login exitoso - redirigir al dashboard
+        session_start();
+        $_SESSION['logged_in'] = true;
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_name'] = 'Administrador';
+        
+        file_put_contents(__DIR__ . '/debug.log', date('Y-m-d H:i:s') . " - LOGIN SUCCESS: $email\n", FILE_APPEND);
+        header('Location: /dashboard');
+        exit();
+    } else {
+        // Login fallido
+        file_put_contents(__DIR__ . '/debug.log', date('Y-m-d H:i:s') . " - LOGIN FAILED: $email\n", FILE_APPEND);
+        $loginError = 'Credenciales incorrectas. Usa: NexusC@ipss.cl / 123456';
+    }
+}
 
 // Procesar la página solicitada
 try {
@@ -97,7 +124,18 @@ try {
     if (isset($pages[$page])) {
         $viewName = $pages[$page];
         file_put_contents(__DIR__ . '/debug.log', date('Y-m-d H:i:s') . " - LOADING VIEW: '$viewName'\n", FILE_APPEND);
-        echo view($viewName);
+        
+        // Pasar error de login si existe
+        if ($page === 'login' && isset($loginError)) {
+            echo view($viewName, ['error' => $loginError]);
+        } else {
+            echo view($viewName);
+        }
+    } elseif (preg_match('/^proyectos\/(\d+)$/', $page, $matches)) {
+        // Ruta dinámica para proyectos/{id}
+        $projectId = $matches[1];
+        file_put_contents(__DIR__ . '/debug.log', date('Y-m-d H:i:s') . " - LOADING PROJECT VIEW: ID=$projectId\n", FILE_APPEND);
+        echo view('proyectos.show', ['id' => $projectId]);
     } else {
         file_put_contents(__DIR__ . '/debug.log', date('Y-m-d H:i:s') . " - PAGE NOT FOUND: '$page'\n", FILE_APPEND);
         echo show404();

@@ -6,22 +6,34 @@
 <div class="login-container">
     <div class="login-card">
         <div class="login-header">
-            <img src="images/logo.png" alt="Nexus Compendium Logo" class="logo">
+            <img src="/images/logo.png?v=<?php echo time(); ?>" alt="Nexus Compendium Logo" class="logo">
             <h1>Iniciar Sesión</h1>
             <p>Accede a tu cuenta de Nexus Compendium</p>
+        </div>
+
+        <!-- Credenciales de prueba -->
+        <div class="demo-credentials">
+            <h3>Credenciales de Prueba</h3>
+            <p><strong>Email:</strong> NexusC@ipss.cl</p>
+            <p><strong>Contraseña:</strong> 123456</p>
+        </div>
+
+        <!-- Mensaje de estado (oculto por defecto) -->
+        <div id="login-message" class="error-message" style="display: none;">
+            <p id="message-text"></p>
         </div>
 
         <form class="login-form" action="/login" method="POST">
             <div class="form-group">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <input type="email" id="email" name="email" class="form-control" required 
-                       placeholder="usuario@ipss.cl">
+                       placeholder="NexusC@ipss.cl" value="NexusC@ipss.cl">
             </div>
 
             <div class="form-group">
                 <label for="password" class="form-label">Contraseña</label>
                 <input type="password" id="password" name="password" class="form-control" required 
-                       placeholder="••••••••">
+                       placeholder="123456" value="123456">
             </div>
 
             <div class="form-options">
@@ -32,11 +44,12 @@
                 <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-full">Iniciar Sesión</button>
+            <button type="submit" class="btn btn-primary btn-full">🔑 Iniciar Sesión</button>
         </form>
 
         <div class="login-footer">
             <p>¿No tienes una cuenta? <a href="/registro">Regístrate aquí</a></p>
+            <p><a href="/">← Volver al inicio</a></p>
         </div>
     </div>
 </div>
@@ -92,6 +105,54 @@
 
     .login-form {
         margin-bottom: 2rem;
+    }
+
+    .demo-credentials {
+        background: var(--light-green);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--bright-green);
+    }
+
+    .demo-credentials h3 {
+        color: var(--dark-blue);
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .demo-credentials p {
+        margin: 0.25rem 0;
+        color: var(--dark-blue);
+        font-size: 0.9rem;
+    }
+
+    .error-message {
+        background: #ffebee;
+        border: 1px solid #f44336;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .error-message p {
+        color: #c62828;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .success-message {
+        background: #e8f5e8;
+        border: 1px solid #4caf50;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .success-message p {
+        color: #2e7d32;
+        margin: 0;
+        font-weight: 600;
     }
 
     .form-group {
@@ -167,4 +228,35 @@
         text-decoration: underline;
     }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.login-form');
+    const messageDiv = document.getElementById('login-message');
+    const messageText = document.getElementById('message-text');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        // Validar credenciales
+        if (email === 'NexusC@ipss.cl' && password === '123456') {
+            messageText.innerHTML = '✅ Login exitoso. Redirigiendo...';
+            messageDiv.className = 'success-message';
+            messageDiv.style.display = 'block';
+            
+            // Redirigir al dashboard después de 1 segundo
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 1000);
+        } else {
+            messageText.innerHTML = '❌ Credenciales incorrectas. Use: NexusC@ipss.cl / 123456';
+            messageDiv.className = 'error-message';
+            messageDiv.style.display = 'block';
+        }
+    });
+});
+</script>
 @endsection

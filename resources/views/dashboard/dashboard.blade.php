@@ -5,13 +5,14 @@
 @section('content')
 <div class="container">
     <div class="dashboard-header">
-        <h1>Dashboard</h1>
-        <p class="subtitle">Panel de control de Nexus Compendium</p>
+        <h1>📊 Panel de Control</h1>
+        <p class="subtitle">Dashboard de Nexus Compendium</p>
     </div>
 
+    <!-- Estadísticas Principales -->
     <div class="dashboard-stats">
         <div class="stat-card">
-            <div class="stat-icon projects">📋</div>
+            <div class="stat-icon projects">📊</div>
             <div class="stat-content">
                 <h3>12</h3>
                 <p>Proyectos Activos</p>
@@ -131,14 +132,14 @@
                         <div class="date-day">15</div>
                         <div class="date-info">
                             <p><strong>Reunión VcM</strong></p>
-                            <span>Abril 2025</span>
+                            <span>Agosto 2025</span>
                         </div>
                     </div>
                     <div class="date-item">
                         <div class="date-day">22</div>
                         <div class="date-info">
                             <p><strong>Entrega Informe</strong></p>
-                            <span>Abril 2025</span>
+                            <span>Agosto 2025</span>
                         </div>
                     </div>
                 </div>
@@ -372,6 +373,78 @@
 
         .dashboard-stats {
             grid-template-columns: 1fr;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2rem;
+        }
+
+        .panel-card {
+            padding: 1.5rem;
+        }
+
+        .project-item, .activity-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .status {
+            align-self: flex-start;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .action-btn {
+            text-align: center;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 1rem;
+        }
+
+        .dashboard-header h1 {
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            align-self: center;
+        }
+
+        .panel-card {
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .panel-card h2, .panel-card h3 {
+            font-size: 1.3rem;
+        }
+
+        .date-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 0.5rem;
+        }
+
+        .upcoming-dates {
+            gap: 0.5rem;
         }
     }
 </style>
